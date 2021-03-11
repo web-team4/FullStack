@@ -1,0 +1,32 @@
+.complete_all{
+    height: 100%;
+}
+.complete_all .helper{
+    height: 90%; vertical-align: middle; display: inline-block;
+}
+.complete_all .text{
+    display: inline-block; vertical-align: middle; text-align: left; color:rgb(110, 110, 110); font-size: 24px;
+}
+.complete_all .text h1{
+    font-size: 48px; margin-bottom: 20px; color:rgb(90, 90, 90);font-weight: normal; margin-top: -15px;
+}
+.complete_all .toHome{
+    width:100%; position:relative; top:-80px; 
+}
+.complete_all .toHome a{
+    display:flex; float: right; margin-right: 70px; color: rgb(83, 143, 255); font-size: 36px;
+}
+.complete_all .toHome a h1{
+    margin-left: 10px; font-weight: normal; position: relative;
+}
+.complete_all .toHome a h1:after{
+    position: absolute; bottom:0px; width:0px; content: ""; height: 2px;
+    background: rgb(83, 143, 255);
+    left:50%; transform: translateX(-50%); transition: all 0.5s;
+}
+.complete_all .toHome a h1:hover:after{
+    width: 200px; background: rgb(0, 88, 251);
+}
+.complete_all .toHome a h1:hover{
+    color:rgb(0, 88, 251);
+}

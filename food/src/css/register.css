@@ -1,0 +1,87 @@
+.all{
+    height:100%; 
+}
+.all .titleBox{padding-top: 35px; }
+.titleBox .title{
+    display: flex; justify-content: center; position: relative; left:-10px;
+}
+.titleBox .line{
+    width:60px; height: 2px; background: gray; display:inline-block;
+    margin-bottom: 45px;
+}
+.titleBox .title h1{
+    font-size: 40px; font-weight: normal; padding: 5px 5px 5px 5px; color:rgb(58, 58, 58)
+}
+.titleBox .title img{
+    width: 50px;height: 50px;
+}
+
+
+.all .description{ top:0; position: relative;
+    font-size: 22px; text-align: left;  margin:0px 30% 70px 32%;
+    color: rgb(58, 58, 58); 
+}
+.all .description h1{
+    margin-bottom: 10px; font-size: 40px; 
+    font-weight: normal; 
+}
+.all .description #para{
+    padding-top:30px; margin-bottom: 35px;
+}
+.all .description #secondP{
+    padding-top: 100px; margin-bottom: 100px;
+}
+/*
+.all .description:before{
+    box-shadow: 0 12px 18px rgba(50,50,93,0.7);
+    position: absolute; z-index: -5;
+    background-image: url("../images/register_img1.jpg");
+    background-size: 100% 100%; width:150%; height: 680px; min-width:800px;
+    content:""; top:-30px; left: -25%; border-radius: 20px;
+}
+.all .description:after{min-width:800px; border-radius: 20px;
+    content:""; position:absolute; z-index: -4; left:-25%; top:-30px; 
+    width: 150%; height: 680px; background: rgba(0, 0, 0, 0.308);
+   
+}*/
+.all .input_list{
+    margin:0px auto; width: 22%; position:relative;
+}
+
+.all .input_list:after{
+    position: absolute; z-index: -3; width:120%; height: 125%; content: "";
+    background-color: rgb(248, 248, 248); left:-10%; top:-10%;
+    border-radius: 20px; box-shadow: 0 12px 18px rgba(50,50,93,0.4);
+}
+
+.all .next .nextPage {
+    float: right; margin-bottom: 53px; font-size: 30px; color:rgb(70, 134, 255); top:-30px;
+    margin-right: 70px; width:70px; height: 50px; position: relative; transition: all 0.5s;
+}
+.all .next .prevPage{float:left; font-size: 30px; color:rgb(70, 134, 255); width:70px; height: 50px; position: relative; transition: all 0.5s;
+    margin-left: 120px; margin-top:60px;
+}
+.all .next .nextPage:after, .all .next .prevPage:after{
+    position:absolute; top:33px; width:0; content: ""; height: 2px;
+    background:rgb(0, 88, 251);
+    left:50%; transform: translateX(-50%); transition: all 0.5s;
+}
+.all .next .nextPage:hover, .all .next .prevPage:hover{color:rgb(0, 88, 251);}
+.all .next .nextPage:hover:after, .all .next .nextPage:focus:after, .all .next .prevPage:hover:after, .all .next .prevPage:focus:after{
+    width:70px;
+}
+.all .next .complete {
+    position:relative; float:right;
+    width: 190px; height: 80px; right:60px; top:25px;
+    background: rgb(0, 88, 251);border:none;
+    border-radius: 40px; font-size: 28px; color:whitesmoke;
+    font-weight: normal;  box-shadow: 0 6px 9px rgba(50,50,93,0.7); transition: 0.3s all;
+}
+.all .next .complete:hover, .all .next .complete:focus{
+    background: rgb(70, 134, 255); outline:none;
+}
+.all .next p{
+    font-size: 20px; color:rgb(10,10,10);  right:-100px; bottom:50px;
+    width:700px; 
+    position: absolute;
+}

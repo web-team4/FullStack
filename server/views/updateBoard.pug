@@ -1,0 +1,20 @@
+html
+    head
+        title 게시판 수정
+        meta(charset='utf-8')
+    body
+        h1 게시판 수정
+        form(action="/update" method="post")
+            table(border=1)
+                tr
+                    th 제목
+                    td
+                        - var values = board_title
+                        input(type="text" name="board_title" value=values)
+                tr
+                    th 내용
+                    td
+                        textarea(rows="5" cols="50" name="board_content") #{board_content}
+                        - var values = board_id
+                        input(type="text" name="board_id" value=values style="display:none")
+                    input(type="submit" value="수정")

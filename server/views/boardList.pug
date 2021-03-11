@@ -1,0 +1,32 @@
+doctype html
+html
+    head
+        title 게시판 목록
+        meta(charset='utf-8')
+    body
+        h1 게시판 목록
+        a(href='/add')
+            button(type='button') 글 추가
+        p
+          a(href="/") 홈으로
+        table(border='1')
+            tr
+                th 번호
+                th 제목
+                th 작성자
+                th 게시일
+            each v in model
+                tr
+                    td #{v.board_id}
+                    - var link = '/detail/' + v.board_id
+                        td
+                            a(href=link) #{v.board_title}
+                    td #{v.user_name}
+                    td #{v.add_date}
+            p currentPage : #{currentPage} lastPage : #{lastPage}
+            if (currentPage >= 2)
+                - var link = '/list/' + (currentPage-1)
+                a(href=link) 이전
+            if (currentPage < lastPage)
+                - var link = '/list/' + (currentPage+1)
+                a(href=link) 다음

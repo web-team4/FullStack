@@ -1,0 +1,105 @@
+.haha{
+    height: 80%; width: 100%; position:relative; top:10%;
+}
+.total{
+    width:90%; margin:auto;  min-height: 500px; height:100%;
+    display:grid; grid-template-columns: 1fr 1fr;
+    position: inherit; 
+}
+.total .logins{
+    height: 70%; position:inherit; min-height: 580px;
+    margin-bottom: 100px;
+}
+.logins:before{
+    width:70%; position:absolute; left: 9%; height: 580px; content:""; border:1px solid rgba(0,0,0,0.2); color:rgba(0,0,0,0.7);
+    box-shadow: 0 12px 18px rgba(50,50,93,0.2); background: #fff; border-radius: 20px;
+}
+.logins h2{
+    position: relative; left:-6%;
+    font-size: 45px; font-weight: bold; margin-bottom: 50px; margin-top: 50px; color: rgb(59, 59, 59);
+}
+.logins form{
+    position: relative; width:98%;
+    padding-left:20%; padding-right:8%;
+    display: grid; grid-template-columns: 2fr 1fr; grid-template-rows:1fr 150px;
+}
+.loginButton input{
+    background: url("../images/login.png") no-repeat;
+    background-size: contain; margin-top: 50px; margin-left: 20px;
+    width:120px; height: 120px; z-index: 2; min-width: 100px;
+    border:none;padding-bottom: 50px; cursor: pointer; transition: 0.3s all;
+}
+.loginButton input:hover, .loginButton input:focus{
+    margin-top: 40px; width: 130px; height: 130px;
+}
+.etc{position:relative;}
+.finds{
+    margin-top: 15px; text-align: left; margin-bottom: 50px;
+}
+.finds img{
+    width: 25px; height: 25px; margin-bottom: 9px;
+}
+.finds .find{
+    position:relative; 
+    font-size: 21px; color:rgb(70, 70, 70); 
+}
+
+.finds .find a:hover, .finds .find a:focus{
+    font-weight: bold; font-size: 21px; 
+}
+.find span{
+    position:absolute; left:49%; background-color:rgb(98, 98, 98); top:2px;
+    width:2px; height: 16px; z-index: 3; border-radius: 2px;
+}
+.find a:nth-child(3){
+    position:absolute; right:0;
+}
+.register{
+    transition: 0.3s all; position: relative; top:20px;
+    color:rgb(0, 79, 255, 0.9); text-decoration: underline; font-size: 18px;
+}
+.register:hover, .register:focus{
+    color: rgba(0, 79, 255, 0.6); margin-top: -3px;
+}
+
+@font-face{
+    font-family:"Helvetica Extended Light";
+    src: url("../fonts/Helvetica Extended Light.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+    font-stretch:expanded;
+}
+.letter{position:relative; }
+.letter .wrap{position:relative; top: 20%; text-align: left; padding-left: 60px; font-family: "Helvetica Extended Light"; padding-right: 30px; z-index:2;}
+
+/*
+*/
+@keyframes slid-up{
+    0%{opacity: 0;}
+    40%{opacity: 0; transform : translateY(40px);}
+}
+
+.letter img{z-index: -3; overflow: hidden; animation-name: slid-up; animation-duration: 0.5s;
+   position: absolute; right:0; width: 100%;top:-7.5%; background: #000;margin-bottom: 100px; height: 100%;
+}
+.letter img:before{animation-name: slid-up; animation-duration: 0.5s;
+    position: relative; content: ""; background: rgba(0, 0, 0); color:rgba(0, 0, 0, 0.527);
+    width: 130%;height: 580px; left:0; top:0; min-width:800px; margin-right: -100px;
+}
+.letter .wrap:after{animation-name: slid-up; animation-duration: 0.8s;
+    position: absolute; content: ""; width:110%; height: 400px; background: rgba(0, 0, 0, 0.808); top:-12%; left:4.3%; min-height: 350px;
+}
+.wrap .title h2{font-size: 80px; font-weight: normal; letter-spacing: 0.5px; margin-bottom: 25px;
+    animation-name: slid-up; animation-duration: 1.1s;
+    color:rgba(255, 255, 255, 0.931);position: relative; z-index: 6;}
+.wrap .description{animation-name: slid-up; animation-duration: 1.7s;
+    line-height: 32px;
+    font-size:25px; color:rgba(255, 255, 255, 0.767); font-weight: 600;position: relative; z-index: 6; top:20px; padding-top: 30px;
+}
+.wrap .line{display: block;animation-name: slid-up; animation-duration: 1.4s;
+    width:80%; height:2px; color:whitesmoke; background: whitesmoke; position: relative;
+    left:-1%; z-index: 6;
+}
+
+/*
+*/

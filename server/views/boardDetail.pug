@@ -1,0 +1,35 @@
+doctype html
+html
+    head
+        title 게시판 상세보기
+        meta(charset='utf-8')
+    body
+        h1 게시판 상세보기
+        table(border="1")
+            tr
+                th 제목
+                td(colspan="2") #{board_title}
+            tr
+                th 내용
+                td(colspan="2") #{board_content}
+            tr
+                th 작성자
+                td(colspan="2") #{user_name}
+            tr
+                th 날짜
+                td(colspan="2") #{add_date}
+            - var link = '/comment/' + board_id
+            form(action=link method="post")
+                tr
+                    td 댓글
+                    td(colspan="2")
+                        textarea(name="comment_content"  rows="2" cols="50")
+                        input(type="submit" value="입력")
+            tr
+                each c in c_rs
+                    tr
+                        td #{c.user_name}
+                        td #{c.comment_content}
+                        td #{c.comment_date}
+            a(href="/list" type="button")
+                button 목록

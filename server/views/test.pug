@@ -1,0 +1,72 @@
+doctype html
+html
+    head
+        script.
+            var page = 0 ;
+            var e_value = 0 , i_value = 0;
+            var s_value = 0 , n_value = 0;
+            var t_value = 0 , f_value = 0;
+            var j_value = 0 , p_value = 0;
+            var q_list = ['e/i-1','s/n-1','t/f-1','j/p-1','e/i-2','s/n-2','t/f-2','j/p-2','e/i-3','s/n-3','t/f-3','j/p-3'];
+            var a1_list = ['e1','s1','t1','j1','e2','s2','t2','j2','e3','s3','t3','j3'];
+            var a2_list = ['i1','n1','f1','p1','i2','n2','f2','p2','i3','n3','f3','p3'];
+            function a1_func(){
+                if(page%4==0){e_value++};
+                if(page%4==1){s_value++};
+                if(page%4==2){t_value++};
+                if(page%4==3){j_value++};
+                page+=1;
+                nextpage();
+            }
+            function a2_func(){
+                if(page%4==0){i_value++};
+                if(page%4==1){n_value++};
+                if(page%4==2){f_value++};
+                if(page%4==3){p_value++};
+                page+=1;
+                nextpage();
+            }
+            function nextpage(){
+                if (page!=12){
+                  var q = q_list[page];
+                  var a1 = a1_list[page];
+                  var a2 = a2_list[page];
+                  document.getElementById("q_num").innerHTML = `Q${page+1}.`;
+                  document.getElementById("q_content").innerHTML = `${q}`;
+                  var a_1 = document.getElementById("a_1");
+                  a_1.value= `${a1}`;
+                  var a_2 = document.getElementById("a_2");
+                  a_2.value= `${a2}`;
+                  document.getElementById("result").innerHTML =
+                  `
+                  e : ${e_value} i : ${i_value} <br>
+                  s : ${s_value} n : ${n_value} <br>
+                  t : ${t_value} f : ${f_value} <br>
+                  j : ${j_value} p : ${p_value} <br>
+                  page : ${page}
+                  `
+                }
+                else {
+                  var ei_result = (e_value>i_value ?  "e" : "i")
+                  var sn_result = (s_value>n_value ?  "s" : "n")
+                  var tf_result = (t_value>f_value ?  "t" : "f")
+                  var jp_result = (j_value>p_value ?  "j" : "p")
+                  var user_mbti = ei_result + sn_result + tf_result + jp_result
+                  document.getElementById("question").innerHTML = '당신의 mbti는'
+                  document.getElementById("answer").innerHTML =`
+                    ${user_mbti} 입니다.
+                    <input type="text" name="user_mbti" value="${user_mbti}" style="display:none"></input>
+                    <p><input type="submit" value="테스트 결과 보러가기"></input></p>`;
+                }
+              }
+    body
+        form(action="/test" method="post")
+            div(id="question")
+                p(id="q_num") Q1.
+                p(id="q_content") e/i-1
+            div(id="answer")
+                p
+                  input(type="button" value="e1" id="a_1" onclick="a1_func()")
+                p
+                  input(type="button" value="i1" id="a_2" onclick="a2_func()")
+                div(id="result") result

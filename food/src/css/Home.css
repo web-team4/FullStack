@@ -1,0 +1,61 @@
+@charset "utf-8";
+@import "reset.css";
+
+@font-face {
+  font-family: "NanumBarunGothic";
+  font-style: normal;
+  font-weight: 400;
+  src: url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff")
+    format("woff");
+}
+
+body {
+
+  font-family: "NanumBarunGothic", sans-serif !important;
+}
+
+.Home{position:relative; width:100%; height:100%; overflow: hidden;}
+/*배경1*/
+.Home .image1 {
+    transform:scale(1.1); animation-name: scaleani; animation-duration: 2s;
+  z-index: -1;
+  width: 100%; height: 100%;
+  background : url("../images/background1.png");
+  background-size: cover; background-position: center center;
+}
+
+@keyframes scaleani{
+    0%{transform: scale(1.2);}
+    20%{transform: scale(1.2);}
+}
+
+.Home .inner1 {
+  position: relative;
+  margin-top: -400px;
+  margin-left: 37px;
+  font-family: "NanumBarunGothic", sans-serif !important;
+  color: #f0f0f0;
+  z-index: 1;
+}
+@keyframes slid-up{
+  0%{opacity: 0;}
+  40%{opacity: 0; transform : translateY(40px);}
+}
+.Home .inner1 h2 { animation-name: slid-up; animation-duration: 0.7s;
+    text-align: left;
+  font-size: 58px; 
+  font-weight: bold;
+  letter-spacing: 4px; line-height: 66px;
+}
+.Home .inner1 h4 { animation-name: slid-up; animation-duration: 1.0s;
+  font-size: 30px; text-align: left;
+  font-weight: 150; letter-spacing: 2px;
+}
+.Home .inner1 span {
+  display: block;
+  width: 3px;
+  height: 170px;
+  background-color: #d8d8d8;
+  margin-top: 9px;
+  margin-bottom: 9px;
+}

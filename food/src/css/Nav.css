@@ -1,0 +1,51 @@
+@font-face{
+    font-family:"Helvetica Extended Medium";
+    src: url("../fonts/Helvetica Extended Medium.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+    font-stretch:expanded;
+  }
+.nav{
+    background-color: white;
+    border-top:rgb(0, 0, 200) solid 4px;
+    margin: 0px 58.5px 0px 58.5px; 
+    display:flex; height:87px; justify-content: space-between;
+
+}
+.nav .title{width:480px; background-color: #fff; display: inline-block; text-align: left;}
+.nav .title a{
+    height:80px;
+    font-stretch: expanded;
+    font-size: 65px; font-family: "Helvetica Extended Medium";
+    letter-spacing:-1px; color:rgb(0, 0, 200); font-weight: 600;
+}
+.nav .links{
+    width:60%;
+    align-self: end;
+    position: relative; 
+}
+.links .control{
+    position:absolute; right: 0px; top:20px; width:800px;
+    text-align: center; display:grid; grid-template-columns: repeat(5,160px);
+}
+.control .link{
+    
+    display: inline-block; position:relative;
+    padding:0px 13px; font-size: 22px; 
+    color:rgb(83, 83, 83); font-weight: 500;
+    border-right: rgb(200, 200, 200) 2px solid;
+}
+.control .link:hover, .control .link:focus{color:black; font-weight: bold;}
+/*
+.control .link:after{
+    content:""; width:0%; height: 1.7px; position:absolute; background: rgba(180, 180, 180, 0.705);
+    left:50%; transform: translateX(-50%); transition: all 0.5s; bottom:-4px;
+}
+.control .link:hover:after,.control .link:focus:after{
+    color:black;
+}*/
+
+.control .link:nth-child(5){
+    border-right: none;
+}
+

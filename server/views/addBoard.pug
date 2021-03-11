@@ -1,0 +1,18 @@
+doctype html
+html
+    head
+        title 게시판 입력
+        meta(charset='utf-8')
+    body
+        h1 게시판 입력
+        form(action ="/add" method="post")
+            table(border="1")
+                tr
+                    th 제목
+                    td
+                        input(type="text" name="board_title")
+                tr
+                    th 내용
+                    td
+                        textarea(name="board_content" rows="5" cols="50")
+            button(type="submit") 글올리기

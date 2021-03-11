@@ -1,0 +1,19 @@
+.inputBox{text-align: left; font-size: 23px; position:relative;}
+.inputBox .topMessage{margin-bottom: 8px;color:rgb(70, 70, 70); font-weight: normal; text-decoration: none;}
+.inputBox .Box{margin-bottom: 15px;}
+.Box input, .Box select{
+    height:43px; width:100%; outline: none; transition: 0.5s all; font-size: 18px;
+}
+.Box input:focus, .Box select:focus{
+    background-color:white;
+    box-shadow: 0px 0px 10px 0.3em rgba(13, 56, 250, 0.5); 
+}
+.inputBox .message{
+    font-size: 14px; color:red; margin-bottom: 11px;  
+    position: absolute;
+    right:0px;
+}
+.Box input, .Box select{
+    background-color: rgb(230, 230, 230); border: none;
+    border-radius: 6px; padding: 0px 7px;
+}

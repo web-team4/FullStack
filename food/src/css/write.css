@@ -1,0 +1,137 @@
+@charset "utf-8";
+@import "reset.css";
+/*
+@font-face {
+  font-family: "GmarketSansBold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NanumBarunGothic";
+  font-style: normal;
+  font-weight: 400;
+  src: url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff")
+    format("woff");
+}
+
+body {
+  background-color: #f6f6f6;
+  font-family: "NanumBarunGothic", sans-serif !important;
+}*/
+
+/*제목*/
+.write .subtitle {
+  position: absolute;
+  width: 80%;
+  left: 0px;
+  right: 0px;
+  margin: 50px auto 0px auto;
+
+  text-align: center;
+  color: #414141;
+  font-size: 30px;
+  letter-spacing: 1.5px;
+  align-items: center;
+  align-content: center;
+  font-weight: 100;
+}
+.write .subtitle li { font-weight: bold;
+  display: inline-block; vertical-align: middle; margin: 0 8px;
+}
+.write .subtitle img {
+  width: 42px;
+  height: 42px;
+}
+.write .subline {
+  position: absolute;
+  width: 80%;
+  left: 0px;
+  right: 0px;
+  margin: 110px auto 50px auto;
+  display: block;
+  width: 26px;
+  height: 1.5px;
+  background-color: #b8b5b5;
+}
+
+/*입력창*/
+.write .box {
+  position: absolute;
+  width: 700px;
+  left: 0px;
+  right: 0px;
+  margin: 180px auto;
+  color: #5b5b5b;
+  font-size: 15px;
+  font-weight: 350;
+}
+.write .box ul {
+  margin-bottom: 60px; text-align: left; font-size: 18px;
+}
+.write .box ul .enter1 {
+  border-width: 2px;
+  border-style: solid; /*안넣으면 선 색깔 통일 x*/
+  border-color: #dfdfdf;
+  background-color: #f9f9f9;
+  width: 700px;
+  height: 24px;
+}
+.write .box ul .enter2 {
+  border-width: 2px;
+  border-style: solid; /*안넣으면 선 색깔 통일 x*/
+  border-color: #dfdfdf;
+  background-color: #f9f9f9;
+  width: 700px;
+  height: 330px;
+}
+.write .box ul :nth-child(2) {
+  margin-bottom: 20px;
+}
+.write .box ul :nth-child(3) {
+  margin-bottom: 20px;
+}
+.write .box ul :nth-child(1) {
+  margin-bottom: 7px;
+}
+.write .box ul :nth-child(4) {
+  margin-bottom: 7px;
+}
+.write .box ul .file {
+  width: 80px;
+  height: 35px;
+  border-style: solid;
+  border-width: 1.6px;
+  border-color: #e7e7e7;
+  background-color: #f1f1f1;
+  color: #848484;
+  font-size: 12.5px;
+  display: block;
+  margin-top: 7px;
+  font-weight: 300;
+}
+.write .box .button {
+  text-align: center;
+  display: block;
+}
+.write .box .button :nth-child(1) {
+  background-color: #717070;
+  width: 95px;
+  height: 30px;
+  font-size: 13px;
+  color: #eeeeee;
+  border-width: 0px;
+  margin-right: 10px;
+  font-weight: 400;
+}
+.write .box .button :nth-child(2) {
+  background-color: #b2b1b1;
+  width: 95px;
+  height: 30px;
+  font-size: 13px;
+  color: #eeeeee;
+  border-width: 0px;
+  font-weight: 400;
+}

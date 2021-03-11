@@ -1,0 +1,51 @@
+.profile_all{
+    color:rgb(80, 80, 80); height: 80%;
+}
+.profile_all .title{
+    padding-top: 70px;position: relative; margin-bottom: 70px;
+}
+.profile_all .title:after{
+    content: "";
+    left: 50%; transform: translateX(-50%);
+    width:40px; height: 2px; background:rgb(151, 151, 151); position: absolute; bottom: -30px;
+
+}
+.profile_all .title img{
+    vertical-align: middle;
+}
+.profile_all .title h1{
+    vertical-align: middle;
+    display: inline-block; font-size: 42px; font-weight: normal; margin-left: 10px;
+}
+.profile_all .text{
+    margin-bottom: 60px;
+}
+.profile_all .text .box{
+    text-align: left; font-size: 24px; line-height: 30px; display: inline-block;
+}
+.profile_all .text .box h1{
+    display: inline-block; margin-right: 10px; font-size: 40px; margin-bottom: 15px;
+}
+.profile_all .result{
+    text-align: left; display: inline-block;
+}
+.profile_all .result .heads{
+    font-size: 22px; margin-bottom: 8px; color:rgb(61, 61, 61);
+}
+.profile_all .result .box{
+    height: 40px; width: 300px; margin-bottom: 33px; border: none;
+    color: rgb(66, 66, 66);
+    background: rgb(240, 240, 240); font-size: 20px; padding-left: 15px;
+}
+.profile_all .gotest a .message{
+    margin-top: 20px;
+    color: rgb(0, 88, 251);font-size: 20px; margin-bottom: 10px;
+}
+.profile_all .gotest a .btn{
+    font-weight: normal;  box-shadow: 0 6px 9px rgba(50,50,93,0.7);
+    height: 90px; width: 300px; border-radius: 45px; color:white; transition: 0.3s all;
+    background-color: rgb(0, 88, 251);  border: none; font-size: 27px; cursor: pointer;
+}
+.profile_all .gotest a .btn:hover, .profile_all .gotest a .btn:focus{
+    background:rgb(70, 134, 255); outline:none;
+}
