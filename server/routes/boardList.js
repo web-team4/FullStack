@@ -20,15 +20,13 @@ router.get("/", function(req, res) {
 
 router.get("/:currentPage", function(req, res) {
   //boardList/currentPage 요청시 처리과정 진행
-  console.log("/boardList 요청")
   //페이징
-  let rowPerPage = 10 // 페이지당 보여줄 글목록 : 10개
+  let rowPerPage = 5 // 페이지당 보여줄 글목록 : 10개
   let currentPage = 1
   if (req.params.currentPage) {
     currentPage = parseInt(req.params.currentPage) //param로 전달된걸 정수로 변환
   }
   let beginRow = (currentPage - 1) * rowPerPage // 3페이지이면 20
-  console.log(`currentPage : ${currentPage}`)
   let model = {}
   //db연결
   //행 개수 구하는 쿼리 실행
@@ -38,13 +36,12 @@ router.get("/:currentPage", function(req, res) {
       console.log(err)
       res.send("게시판을 불러올 수 없습니다.")
     } else {
-      console.log(`totalRow : ${result[0].cnt}`)
       let totalRow = result[0].cnt // 왜 [0]을 붙이는지?
-      var lastPage = totalRow / rowPerPage // 30개의 게시물 -> lastPage= 3, 31개의 게시물 -> lastPage=3.1
+      var lastPage = Math.ceil(totalRow / rowPerPage) // 30개의 게시물 -> lastPage= 3, 31개의 게시물 -> lastPage=3.1
     }
     //쿼리문 작성, 실행, model영역에 세팅, 포워드 방식으로 boardList화면 출력
     var sql =
-      'SELECT board_id,board_title,user_name, DATE_FORMAT(add_date,"%m/%d %H:%i") as add_date FROM board ORDER BY board_id DESC LIMIT ?,?'
+      'SELECT board_id as id ,board_title as title , DATE_FORMAT(add_date,"%m/%d %H:%i") as date,user_name as writer,board_view as view,board_like,board_cnum ,board_content as des FROM board ORDER BY board_id DESC LIMIT ?,?'
     // beginRow가 20이면 20부터 10개씩 20-29까지 정렬됨
     conn.query(sql, [beginRow, rowPerPage], function(err, rs) {
       if (err) {
@@ -52,10 +49,10 @@ router.get("/:currentPage", function(req, res) {
         res.send("게시판을 불러올 수 없습니다.")
       } else {
         model.boardList = rs // 왜 이때는 rs[0]이 아닌겨!!
+
         model.currentPage = currentPage
         model.lastPage = lastPage
-        console.log(currentPage, lastPage)
-        res.render("boardList", { model: rs, currentPage: currentPage, lastPage: lastPage })
+        res.send({ model: rs, currentPage: currentPage, lastPage: lastPage })
       } // 이부분 개선할 수 있지 않을까...?
     })
   })

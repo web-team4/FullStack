@@ -18,6 +18,7 @@ class App extends React.Component {
       id: "",
       nickName: "",
       loginCheck: false,
+      mbti: "",
     }
   }
   changeState = (n, v) => {
@@ -35,19 +36,11 @@ class App extends React.Component {
             <Route path="/login" exact={true} render={() => <Login change={this.changeState} />} />
             <Route path="/register" exact component={Register} />
             <Route path="/register_complete" exact component={Complete} />
-            <Route
-              path="/profile"
-              exact
-              render={() => <Profile possible={this.state.loginCheck} />}
-            />
-            <Route path="/board" exact component={Board} />
-            <Route
-              path="/board/write"
-              exact
-              render={() => <Write possible={this.state.loginCheck} />}
-            />
+            <Route path="/profile" exact render={() => <Profile array={this.state} />} />
+            <Route path="/board/:page" exact component={Board} />
+            <Route path="/write" exact render={() => <Write possible={this.state.loginCheck} />} />
             <Route path="/test" exact component={Test} />
-            <Route path="/board/page/:id" exact component={Board_view} />
+            <Route path="/board/:page/:id" exact component={Board_view} />
           </div>
         </div>
       </Router>

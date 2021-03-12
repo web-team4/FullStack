@@ -30,7 +30,7 @@
     border:none;padding-bottom: 50px; cursor: pointer; transition: 0.3s all;
 }
 .loginButton input:hover, .loginButton input:focus{
-    margin-top: 40px; width: 130px; height: 130px;
+    margin-top: 40px; width: 130px; height: 130px; border: none; outline: none;
 }
 .etc{position:relative;}
 .finds{

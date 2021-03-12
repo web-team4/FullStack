@@ -32,6 +32,7 @@ class Login extends React.Component {
             this.props.change("id", event.target[0].value)
             this.props.change("nickName", res.data._user_name)
             this.props.change("loginCheck", true)
+            this.props.change("mbti", res.data._user_mbti)
             this.props.history.push("/")
           } else {
             alert("로그인 실패")

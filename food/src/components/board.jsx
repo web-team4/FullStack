@@ -4,214 +4,147 @@ import board1 from "../images/coffee2.png"
 import board2 from "../images/search1.png"
 import board3 from "../images/heart.png"
 import board4 from "../images/chat.png"
-import { Link } from "react-router-dom"
+import { Link, Router } from "react-router-dom"
+import Axios from "axios"
+import Boardbtn from "./board_buttons.jsx"
+Axios.defaults.withCredentials = true
 
+class Boardtd extends React.Component {
+  render() {
+    return (
+      <td>
+        <Link
+          to={{
+            pathname: `/board/page${this.props.num}/${this.props.original.id}`,
+            state: {
+              id: this.props.original.id,
+              title: this.props.original.title,
+              writer: this.props.original.writer,
+              view: this.props.original.view,
+              date: this.props.original.date,
+              des: this.props.original.des,
+              prevPage: this.props.num,
+            },
+          }}
+        >
+          {this.props.view}
+        </Link>
+      </td>
+    )
+  }
+}
 class BoardRow extends React.Component {
   render() {
     let version = this.props.num % 2 === 1 ? " #f1f1f1" : " white"
     let style = { background: version }
+    let list = Object.values(this.props.array)
+    list = list.slice(0, list.length - 1)
+    list = list.map((l) => {
+      return <Boardtd original={this.props.array} view={l} num={this.props.pageNum}></Boardtd>
+    })
     return (
       <tr className="Boardrow" style={style}>
-        <td>
-          <Link
-            to={{
-              pathname: `/board/page/${this.props.id}`,
-              state: {
-                id: this.props.id,
-                title: this.props.title,
-                writer: this.props.writer,
-                view: this.props.view,
-                date: this.props.date,
-                des: this.props.des,
-              },
-            }}
-          >
-            {this.props.id}
-          </Link>
-        </td>
-        <td>
-          <Link
-            to={{
-              pathname: `/board/page/${this.props.id}`,
-              state: {
-                id: this.props.id,
-                title: this.props.title,
-                writer: this.props.writer,
-                view: this.props.view,
-                date: this.props.date,
-                des: this.props.des,
-              },
-            }}
-          >
-            {this.props.title}
-          </Link>
-        </td>
-        <td>
-          <Link
-            to={{
-              pathname: `/board/page/${this.props.id}`,
-              state: {
-                id: this.props.id,
-                title: this.props.title,
-                writer: this.props.writer,
-                view: this.props.view,
-                date: this.props.date,
-                des: this.props.des,
-              },
-            }}
-          >
-            {this.props.date}
-          </Link>
-        </td>
-
-        <td>
-          <Link
-            to={{
-              pathname: `/board/page/${this.props.id}`,
-              state: {
-                id: this.props.id,
-                title: this.props.title,
-                writer: this.props.writer,
-                view: this.props.view,
-                date: this.props.date,
-                des: this.props.des,
-              },
-            }}
-          >
-            {this.props.writer}
-          </Link>
-        </td>
-        <td>
-          <Link
-            to={{
-              pathname: `/board/page/${this.props.id}`,
-              state: {
-                id: this.props.id,
-                title: this.props.title,
-                writer: this.props.writer,
-                view: this.props.view,
-                date: this.props.date,
-                des: this.props.des,
-              },
-            }}
-          >
-            {this.props.view}
-          </Link>
-        </td>
-        <td>
-          <Link
-            to={{
-              pathname: `/board/page/${this.props.id}`,
-              state: {
-                id: this.props.id,
-                title: this.props.title,
-                writer: this.props.writer,
-                view: this.props.view,
-                date: this.props.date,
-                des: this.props.des,
-              },
-            }}
-          >
-            {this.props.like}
-          </Link>
-        </td>
-        <td>
-          <Link
-            to={{
-              pathname: `/board/page/${this.props.id}`,
-              state: {
-                id: this.props.id,
-                title: this.props.title,
-                writer: this.props.writer,
-                view: this.props.view,
-                date: this.props.date,
-                des: this.props.des,
-              },
-            }}
-          >
-            {this.props.comments}
-          </Link>
-        </td>
+        {list}
       </tr>
     )
   }
 }
-class Board extends React.Component {
-  getList = () => {
-    let lists = [
-      {
-        id: 1,
-        title: "one",
-        date: "03-06",
-        writer: "sohee",
-        view: 1,
-        like: 10,
-        comments: 11,
-        des: "    TE  ST",
-      },
-      {
-        id: 2,
-        title: "one",
-        date: "03-06",
-        writer: "sohee",
-        view: 1,
-        like: 10,
-        comments: 11,
-        des: "TEST \n\n\n test",
-      },
-      {
-        id: 3,
-        title: "one",
-        date: "03-06",
-        writer: "sohee",
-        view: 1,
-        like: 10,
-        comments: 11,
-        des: "TEST <br/> test <br/>",
-      },
-      {
-        id: 4,
-        title: "one",
-        date: "03-06",
-        writer: "sohee",
-        view: 1,
-        like: 10,
-        comments: 11,
-        des: "TEST",
-      },
-    ]
 
-    for (let i = lists.length; i < 15; i++)
-      lists.push({
+class BoardTable extends React.Component {
+  constructor(props) {
+    super(props)
+    let page = this.props.match.params.page
+    page = parseInt(page.slice(4))
+    this.state = { pageNum: page, lists: [], lastPageNum: 1 }
+    console.log("const", page, this.state.pageNum)
+  }
+  async componentDidMount() {
+    this.getLists()
+  }
+
+  getLists = async () => {
+    await Axios.get(`/list/${this.state.pageNum}`, {
+      currentPage: this.state.pageNum,
+    }).then((res) => {
+      this.setState({ lists: res.data.model, lastPageNum: res.data.lastPage })
+    })
+    console.log("getlist", this.state.pageNum, this.state.lastPageNum)
+    this.addLists()
+  }
+  addLists = () => {
+    let count = this.state.lists.length
+    let temp = this.state.lists
+
+    for (let i = count; i < 5; i++)
+      temp.push({
         id: "",
-        title: "test",
+        title: "",
         date: "",
         writer: "",
         view: "",
-        like: "",
+        board_like: "",
         comments: "",
+        des: "",
       })
-    let ret = lists.map((l, idx) => {
-      return (
-        <BoardRow
-          num={idx}
-          key={idx}
-          id={l.id}
-          title={l.title}
-          date={l.date}
-          writer={l.writer}
-          view={l.view}
-          like={l.like}
-          comments={l.comments}
-          des={l.des}
-        ></BoardRow>
-      )
-    })
-    return ret
+    this.setState({ lists: temp })
+  }
+  changePageNum = async (v) => {
+    console.log("?", v)
+    if (this.state.pageNum !== v) await this.setState({ pageNum: v })
+    this.getLists()
   }
   render() {
-    let lists = this.getList()
+    let ret = this.state.lists.map((l, idx) => {
+      return <BoardRow num={idx} key={idx} array={l} pageNum={this.state.pageNum}></BoardRow>
+    })
+    return (
+      <div className="text">
+        <div className="search">
+          <Link to={{ pathname: "/write", state: { prevPage: this.state.pageNum } }}>
+            <input type="button" className="write" value="글 작성" />
+          </Link>
 
+          <ul>
+            <li>
+              <input type="text" />
+            </li>
+            <li>
+              <img src={board2} alt="" />
+            </li>
+          </ul>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th className="head-1">NO.</th>
+              <th className="head-2">제목</th>
+              <th className="head-3">날짜</th>
+              <th className="head-4">작성자</th>
+              <th className="head-5">조회수</th>
+              <th className="head-6">
+                <img src={board3} alt="" width="20px" />
+              </th>
+              <th className="head-7">
+                <img src={board4} alt="" width="20px" />
+              </th>
+            </tr>
+          </thead>
+          <tbody>{ret}</tbody>
+        </table>
+        <div className="pagenum">
+          <Boardbtn
+            pageNum={this.state.pageNum}
+            lastPageNum={this.state.lastPageNum}
+            handle={this.changePageNum}
+          ></Boardbtn>
+        </div>
+      </div>
+    )
+  }
+}
+class Board extends React.Component {
+  render() {
     return (
       <div className="board">
         <div className="image">
@@ -223,43 +156,8 @@ class Board extends React.Component {
           <br />
           맛집에 대하여 자유롭게 이야기를 나눌 수 있는 게시판입니다.
         </h5>
-        <div className="text">
-          <div className="search">
-            <Link to="board/write">
-              <input type="button" className="write" value="글 작성" />
-            </Link>
 
-            <ul>
-              <li>
-                <input type="text" />
-              </li>
-              <li>
-                <img src={board2} alt="" />
-              </li>
-            </ul>
-          </div>
-          <table>
-            <thead>
-              <tr>
-                <th className="head-1">NO.</th>
-                <th className="head-2">제목</th>
-                <th className="head-3">날짜</th>
-                <th className="head-4">작성자</th>
-                <th className="head-5">조회수</th>
-                <th className="head-6">
-                  <img src={board3} alt="" width="20px" />
-                </th>
-                <th className="head-7">
-                  <img src={board4} alt="" width="20px" />
-                </th>
-              </tr>
-            </thead>
-            <tbody>{lists}</tbody>
-          </table>
-          <div className="pagenum">
-            [1] [2] [3] [4] ... <button>{">"}</button>
-          </div>
-        </div>
+        <BoardTable {...this.props}></BoardTable>
       </div>
     )
   }

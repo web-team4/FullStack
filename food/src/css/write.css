@@ -121,14 +121,14 @@ body {
   width: 95px;
   height: 30px;
   font-size: 13px;
-  color: #eeeeee;
+  color: #eeeeee; cursor:pointer;
   border-width: 0px;
   margin-right: 10px;
   font-weight: 400;
 }
 .write .box .button :nth-child(2) {
   background-color: #b2b1b1;
-  width: 95px;
+  width: 95px; display: inline-block; cursor:pointer;
   height: 30px;
   font-size: 13px;
   color: #eeeeee;

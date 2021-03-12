@@ -2,32 +2,29 @@ import React from "react"
 import "../css/profile.css"
 import { withRouter, Link } from "react-router-dom"
 import peopleimg from "../images/profile_people.PNG"
+import Axios from "axios"
+Axios.defaults.withCredentials = true
 
 class Profile extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      nickName: "test",
-      testResult: "testResult",
+      nickName: "",
+      testResult: "",
     }
-    this.change()
-  }
-  change = () => {
-    this.setState((state) => {
-      return {
-        nickName: "test",
-        testResult: "testResult",
-      }
-    })
   }
   componentDidMount() {
-    if (!this.props.possible) {
+    if (!this.props.array.loginCheck) {
       alert("로그인이 필요합니다!")
       this.props.history.push("/login")
+    } else {
+      let mbti = this.props.array.mbti
+      if (!mbti) mbti = "결과가 없습니다"
+      this.setState({ nickName: this.props.array.nickName, testResult: mbti })
     }
   }
   render() {
-    return this.props.possible ? (
+    return this.props.array.loginCheck ? (
       <div className="profile_all">
         <div className="title">
           <img src={peopleimg} alt="" width="48px" />
@@ -35,7 +32,7 @@ class Profile extends React.Component {
         </div>
         <div className="text">
           <div className="box">
-            <h1>yerin65</h1>님 <br />
+            <h1>{this.props.array.id}</h1>님 <br />
             안녕하세요! 내 정보 메뉴는 <br />
             회원가입 시 입력하신 닉네임과 심리테스트 결과를 확인하실 수 있습니다.
           </div>

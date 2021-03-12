@@ -11,7 +11,7 @@ class Write extends React.Component {
     }
   }
   render() {
-    return (
+    return this.props.possible ? (
       <div className="write">
         <div className="subtitle">
           <ul>
@@ -41,11 +41,13 @@ class Write extends React.Component {
           </ul>
           <div className="button">
             <input type="submit" value="글 작성" />
-            <input type="button" value="취소" />
+            <Link to={{ pathname: `/board/page${this.props.location.state.prevPage}` }}>
+              <input type="button" value="취소" />
+            </Link>
           </div>
         </form>
       </div>
-    )
+    ) : null
   }
 }
 export default withRouter(Write)

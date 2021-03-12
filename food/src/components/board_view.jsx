@@ -29,7 +29,7 @@ class Board_view extends React.Component {
         </div>
         <div className="description">{this.props.location.state.des}</div>
         <div className="btns">
-          <Link to="/board">
+          <Link to={{ pathname: `/board/page${this.props.location.state.prevPage}` }}>
             <button className="prev">이전</button>
           </Link>
 

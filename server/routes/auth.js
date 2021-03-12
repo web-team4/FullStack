@@ -90,7 +90,7 @@ router.post("/login", function(req, res) {
   // 로그인을 하면 session에 저장이 되어야 함, 그래야 welcome 페이지에서 session 정보를 사용할 수 있음
   // 물론 mysql로도 가능하지만 일단 sql문을 작성해야 하고, data를 넘겨야 하므로 form을 써야 하는데
   // 그에 비하면 session이 훨씬 더 간편!
-  var sql = "SELECT user_id ,user_nickname FROM user WHERE user_id=? AND user_password=?"
+  var sql = "SELECT user_id ,user_nickname, user_mbti FROM user WHERE user_id=? AND user_password=?"
   conn.query(sql, [i_user_id, i_user_password], function(err, rs) {
     if (rs[0]) {
       //rs말고 rs[0]을 해야 정의 되었는지를 확실히 알 수 있음
@@ -100,6 +100,7 @@ router.post("/login", function(req, res) {
         res.send({
           _login: true,
           _user_name: rs[0].user_nickname,
+          _user_mbti: rs[0].user_mbti,
           session: { cookie: { maxAge: 1000 * 60 * 60 } },
         })
       })

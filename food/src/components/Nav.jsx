@@ -35,7 +35,7 @@ function Nav(props) {
           <NavLink to="/" activeClassName="active" className="link">
             메인화면
           </NavLink>
-          <NavLink to="/board" activeClassName="active" className="link">
+          <NavLink to="/board/page1" activeClassName="active" className="link">
             Bridge 광장
           </NavLink>
           <NavLink to="/profile" activeClassName="active" className="link">
