@@ -59,3 +59,19 @@ body {
   margin-top: 9px;
   margin-bottom: 9px;
 }
+.Home .inner1 a{animation-name: slid-up; animation-duration: 1.3s;
+  float: right; font-size: 32px;transition: 0.3s all;
+  position: relative; right:60px; top:-35px;
+}
+.Home .inner1 a::after{
+  position:absolute;  width:330px; height: 80px;
+  content: ""; background: rgba(0, 0, 0, 0.5); z-index: -1;
+  border-radius: 35px; 
+  left:-30px; top:-27px; transition: 0.3s all;
+}
+.Home .inner1 a:hover::after, .Home .inner1 a:focus::after{
+  background: rgba(190, 190, 190, 0.22); 
+}
+.Home .inner1 a:focus, .Home .inner1 a:hover{
+  transform:translateY(-10%); color:white;
+}

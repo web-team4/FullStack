@@ -28,7 +28,7 @@ body {
   width: 80%;
   left: 0px;
   right: 0px;
-  margin: 50px auto 0px auto;
+  margin: 30px auto 0px auto;
 
   text-align: center;
   color: #414141;
@@ -50,7 +50,7 @@ body {
   width: 80%;
   left: 0px;
   right: 0px;
-  margin: 110px auto 50px auto;
+  margin: 80px auto 30px auto;
   display: block;
   width: 26px;
   height: 1.5px;
@@ -63,7 +63,7 @@ body {
   width: 700px;
   left: 0px;
   right: 0px;
-  margin: 180px auto;
+  margin: 100px auto;
   color: #5b5b5b;
   font-size: 15px;
   font-weight: 350;
@@ -78,6 +78,9 @@ body {
   background-color: #f9f9f9;
   width: 700px;
   height: 24px;
+}
+.write .box ul li input{
+  outline:none; border:none; height: 25px; display: inline-block;
 }
 .write .box ul .enter2 {
   border-width: 2px;
@@ -134,4 +137,13 @@ body {
   color: #eeeeee;
   border-width: 0px;
   font-weight: 400;
+}
+.cke_contents{
+  height: 330px !important;
+}
+.cke_toolbar{
+  height:25px !important;
+}
+.cke_bottom{
+  height: 20px !important;
 }

@@ -13,7 +13,16 @@ class Profile extends React.Component {
       testResult: "",
     }
   }
-  componentDidMount() {
+  async componentDidMount() {
+    await Axios.post("/")
+      .then((res) => {
+        this.props.change("id", res.data.id)
+        this.props.change("nickName", res.data.nickName)
+        this.props.change("loginCheck", res.data.loginCheck)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     if (!this.props.array.loginCheck) {
       alert("로그인이 필요합니다!")
       this.props.history.push("/login")

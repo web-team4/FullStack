@@ -39,6 +39,7 @@ router.post("/", function(req, res) {
   //애초에 글 작성 폼은 로그인 한 사람에게만 뜨니까 당연히 session에 저장되어 있어야...!
   const user_id = req.session.user_id
   const user_name = req.session.user_name
+  console.log(board_title, board_content, user_id, user_name)
   //add_date나 update_date는 자동으로 찍히는 current time stemp 이용
   if (!board_content || !board_title) {
     // 내용이 없으면 insert 안되게 설계
@@ -49,12 +50,14 @@ router.post("/", function(req, res) {
   } else {
     //db연결
     var sql =
-      "INSERT INTO board(board_title,board_content,user_id,user_name,add_date) VALUES(?,?,?,?,now())"
+      "INSERT INTO board(board_title,board_content,user_id,user_name,add_date,board_like, board_view, board_cnum) VALUES(?,?,?,?,now(),0,0,0)"
     conn.query(sql, [board_title, board_content, user_id, user_name], function(err, result) {
       if (err) {
         console.log(err)
+        res.status(500).send(err)
       } else {
-        res.redirect("/list")
+        console.log("success")
+        res.send({ check: true })
       }
     })
   }

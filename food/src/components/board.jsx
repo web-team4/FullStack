@@ -17,12 +17,6 @@ class Boardtd extends React.Component {
           to={{
             pathname: `/board/page${this.props.num}/${this.props.original.id}`,
             state: {
-              id: this.props.original.id,
-              title: this.props.original.title,
-              writer: this.props.original.writer,
-              view: this.props.original.view,
-              date: this.props.original.date,
-              des: this.props.original.des,
               prevPage: this.props.num,
             },
           }}
@@ -39,8 +33,10 @@ class BoardRow extends React.Component {
     let style = { background: version }
     let list = Object.values(this.props.array)
     list = list.slice(0, list.length - 1)
-    list = list.map((l) => {
-      return <Boardtd original={this.props.array} view={l} num={this.props.pageNum}></Boardtd>
+    list = list.map((l, idx) => {
+      return (
+        <Boardtd key={idx} original={this.props.array} view={l} num={this.props.pageNum}></Boardtd>
+      )
     })
     return (
       <tr className="Boardrow" style={style}>
@@ -53,12 +49,12 @@ class BoardRow extends React.Component {
 class BoardTable extends React.Component {
   constructor(props) {
     super(props)
+
     let page = this.props.match.params.page
     page = parseInt(page.slice(4))
     this.state = { pageNum: page, lists: [], lastPageNum: 1 }
-    console.log("const", page, this.state.pageNum)
   }
-  async componentDidMount() {
+  componentDidMount() {
     this.getLists()
   }
 
@@ -68,7 +64,7 @@ class BoardTable extends React.Component {
     }).then((res) => {
       this.setState({ lists: res.data.model, lastPageNum: res.data.lastPage })
     })
-    console.log("getlist", this.state.pageNum, this.state.lastPageNum)
+
     this.addLists()
   }
   addLists = () => {
@@ -89,7 +85,6 @@ class BoardTable extends React.Component {
     this.setState({ lists: temp })
   }
   changePageNum = async (v) => {
-    console.log("?", v)
     if (this.state.pageNum !== v) await this.setState({ pageNum: v })
     this.getLists()
   }

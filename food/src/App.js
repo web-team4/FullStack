@@ -11,6 +11,8 @@ import Write from "./components/write"
 import Board from "./components/board"
 import Test from "./components/test"
 import Board_view from "./components/board_view"
+import Axios from "axios"
+Axios.defaults.withCredentials = true
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -20,6 +22,19 @@ class App extends React.Component {
       loginCheck: false,
       mbti: "",
     }
+  }
+  componentDidMount() {
+    Axios.post("/")
+      .then(res => {
+        this.setState({
+          id: res.data.id,
+          nickName: res.data.nickName,
+          loginCheck: res.data.loginCheck,
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
   changeState = (n, v) => {
     this.setState({ [n]: v })
@@ -32,13 +47,22 @@ class App extends React.Component {
             <Nav Version={this.state.loginCheck} change={this.changeState} />
           </div>
           <div className="page">
-            <Route path="/" exact={true} render={() => <Home change={this.changeState} />} />
-            <Route path="/login" exact={true} render={() => <Login change={this.changeState} />} />
+            <Route path="/" exact render={() => <Home change={this.changeState} />} />
+            <Route path="/login" exact render={() => <Login change={this.changeState} />} />
             <Route path="/register" exact component={Register} />
             <Route path="/register_complete" exact component={Complete} />
-            <Route path="/profile" exact render={() => <Profile array={this.state} />} />
+            <Route
+              path="/profile"
+              exact
+              render={props => <Profile array={this.state} change={this.changeState} {...props} />}
+            />
             <Route path="/board/:page" exact component={Board} />
-            <Route path="/write" exact render={() => <Write possible={this.state.loginCheck} />} />
+            <Route
+              path="/write"
+              exact
+              render={props =>
+                <Write possible={this.state.loginCheck} change={this.changeState} {...props} />}
+            />
             <Route path="/test" exact component={Test} />
             <Route path="/board/:page/:id" exact component={Board_view} />
           </div>
