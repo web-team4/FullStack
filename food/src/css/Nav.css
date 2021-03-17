@@ -8,7 +8,7 @@
 .nav{
     background-color: white;
     border-top:rgb(0, 0, 200) solid 4px;
-    margin: 0px 58.5px 0px 58.5px; 
+    
     display:flex; height:87px; justify-content: space-between;
 
 }

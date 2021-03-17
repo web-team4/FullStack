@@ -1,24 +1,47 @@
 .comments .comment{color:#4e4e4e; 
-    margin:20px auto; width:100%; font-size:24px; border:1px solid rgb(200, 200, 200);
+    margin:10px auto; width:100%; font-size:28px; border:1px solid rgb(200, 200, 200);
     padding: 15px; border-radius: 10px; background:#fafafa; display: inline-block;
 }
-.comments h2{ display: inline-block;
-    width: 75%; text-align: left; margin:10px auto; font-size: 28px; padding: 20px;
+.comments h2{ display: inline-block; color:#4e4e4e;
+    width: 75%; text-align: left; margin:10px auto; font-size: 32px; padding: 20px;
   }
 .comments{
+    border-top: 2px dashed rgb(129, 129, 129);
     width: 75%; text-align: left; margin:0 auto;
+    margin-top: 60px;
 }
 .comments .comment .title {
     text-align: left;color: #5d5d5d;
 }
 .comments .comment .title .name{
-    margin: 0 30px;
+    margin: 0 30px; margin-left: 15px;
 }
-.comments .comment hr{
-    margin:15px 0px; width:330px; height: 2px; 
-    border:1px solid rgb(200, 200, 200);
+.comments .comment .title .date{
+    font-size: 18px; color:rgb(139, 139, 139);
+}
+.comments .comment .comment_line{
+    width:330px; height: 2px; margin-top: 10px; margin-bottom: 20px;
+    border-top:2px dotted rgb(131, 131, 131); display: inline-block;
     
 }
-.comments .comment .content{
-    text-align: left; margin:0 30px; font-size: 20px;
+.comments .comment .content{color:#707070;
+    text-align: left; margin:0 30px; font-size: 20px;margin-left: 15px;
+}
+.comments .comment .title .control{
+    float:right;margin-top: -5px; 
+}
+.comments .comment .title .control button{
+    transition: 0.2s all;
+    margin:0 10px; border:none; background-color: transparent;
+    cursor: pointer; color:rgba(50, 69, 156, 0.8);
+    font-size: 16px; font-weight: bold;
+}
+.comments .comment .title .control .delete{
+    color:rgba(228, 20, 20, 0.7);
+}
+.comments .comment .title .control .update:hover, .comments .comment .title .control .update:focus{
+    color:rgb(0, 42, 230);outline: none;
+}
+.comments .comment .title .control .delete:hover, .comments .comment .title .control .delete:focus{
+    color:rgb(255, 0, 0);outline: none;
 }

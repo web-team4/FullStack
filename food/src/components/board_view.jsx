@@ -51,15 +51,15 @@ class Board_view extends React.Component {
     if (this.props.location.state === undefined) this.props.history.push("/board/page1")
     return this.props.location.state ? (
       <div className="board_view">
-        <div className="image">
-          <img src={board1} alt="" />
+        <div className="text">
+          <h3 className="imageTitle">자유 게시판</h3>
+          <h5 className="imageText">
+            로그인 후, 심리테스트 결과 및 인하대학교 후문
+            <br />
+            맛집에 대하여 자유롭게 이야기를 나눌 수 있는 게시판입니다.
+          </h5>
         </div>
-        <h3 className="imageTitle">자유 게시판</h3>
-        <h5 className="imageText">
-          로그인 후, 심리테스트 결과 및 인하대학교 후문
-          <br />
-          맛집에 대하여 자유롭게 이야기를 나눌 수 있는 게시판입니다.
-        </h5>
+
         <div className="title">
           <h1>{this.state.title}</h1>
           <ul>
@@ -73,12 +73,12 @@ class Board_view extends React.Component {
             <li className="control">{this.state.like}</li>
             <li>댓글수</li>
             <li className="control">{this.state.comment.length}</li>
-            {this.state.writer === this.state.nickName ? (
-              <li>
-                <button>수정</button>
-                <button>X</button>
+            {this.state.writer === this.state.nickName && (
+              <li className="control_btns">
+                <button className="update">수정</button>
+                <button className="delete">X</button>
               </li>
-            ) : null}
+            )}
           </ul>
         </div>
         <div
@@ -95,17 +95,19 @@ class Board_view extends React.Component {
           <button className="next">다음</button>
           <div></div>
         </div>
-        <div className="comments">
-          <h2>댓글</h2>
-          {this.state.comment.map((c, idx) => (
-            <Comments key={idx} comment={c} loginName={this.state.nickName}></Comments>
-          ))}
-        </div>
-        <div className="writeComment">
-          <form className="write" onSubmit={(e) => this.handleSubmit(e)}>
-            <textarea name="text" id="" cols="50" rows="6" wrap="hard"></textarea>
-            <button type="submit">등록</button>
-          </form>
+        <div className="scroll">
+          <div className="comments">
+            <h2>댓글</h2>
+            {this.state.comment.map((c, idx) => (
+              <Comments key={idx} comment={c} loginName={this.state.nickName}></Comments>
+            ))}
+          </div>
+          <div className="writeComment">
+            <form className="write" onSubmit={(e) => this.handleSubmit(e)}>
+              <textarea name="text" id="" cols="50" rows="6" wrap="hard"></textarea>
+              <button type="submit">등록</button>
+            </form>
+          </div>
         </div>
       </div>
     ) : null

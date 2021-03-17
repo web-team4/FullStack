@@ -143,14 +143,13 @@ class Board extends React.Component {
     return (
       <div className="board">
         <div className="image">
-          <img src={board1} alt="" />
+          <h3 className="imageTitle">자유 게시판</h3>
+          <h5 className="imageText">
+            로그인 후, 심리테스트 결과 및 인하대학교 후문
+            <br />
+            맛집에 대하여 자유롭게 이야기를 나눌 수 있는 게시판입니다.
+          </h5>
         </div>
-        <h3>자유 게시판</h3>
-        <h5>
-          로그인 후, 심리테스트 결과 및 인하대학교 후문
-          <br />
-          맛집에 대하여 자유롭게 이야기를 나눌 수 있는 게시판입니다.
-        </h5>
 
         <BoardTable {...this.props}></BoardTable>
       </div>

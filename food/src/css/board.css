@@ -22,97 +22,35 @@ body {
   font-family: "NanumBarunGothic", sans-serif !important;
 }*/
 
-/*header*/
-.board {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
 
-.board .title {
-  position: absolute;
-  width: 93%;
-  left: 0px;
-  right: 0px;
-  margin: 25px auto;
-}
-.board .title .line {
-  display: block;
-  width: 100%;
-  height: 4px;
-  background-color: #003ffa;
-}
-.board .title h2 {
-  font-family: "GmarketSansBold", sans-serif !important;
-  font-stretch: extra-expanded;
-  font-weight: 200;
-  color: #003ffa;
-  font-size: 45px;
-  margin-top: 13px;
-  font-weight: 490;
-  letter-spacing: 5px;
-  display: inline-block; /*안하면 h2->줄바꿈 생김*/
-}
-
-.board .title .menu {
-  float: right;
-  color: #5b5b5b;
-  margin-top: 17px;
-  font-size: 17px;
-  font-weight: 400;
-}
-
-.board .title .menu span {
-  width: 1px;
-  height: 15px;
-  margin-right: 25px;
-  margin-left: 25px;
-  background-color: #dcdcdc;
-  display: inline-block;
-}
-.board .title .menu li {
-  display: inline-block; /*li태그 글자배열 오른쪽으로*/
-}
 @keyframes slid-up{
   0%{opacity: 0;}
   40%{opacity: 0; transform : translateY(40px);}
 }
 /*img*/
-.board .image {
-  position: absolute;
-  width: 75%;
-  height: 400px;
-  left: 0;
-  right: 0;
-  margin: 30px auto 190px auto;
-  color: #e9e9e9;
-  float: right;
+.board .image{width: 75%;
+  height: 400px;padding:80px 0 0 100px;margin: 10px auto 50px auto;
+  background: url("../images/coffee2.png") no-repeat; position: relative;
+  background-position: center; background-size: cover;
 }
-.board .image img {
-  width: 100%;
-  height: 100%;
+.board .image .imageTitle {animation-name: slid-up; animation-duration: 0.7s;
+  position: relative;
+  font-size: 44px; 
+  text-align: left; 
+  color: #e9e9e9; left: 0;
+  font-weight: 200;
+  
 }
-.board h3 {animation-name: slid-up; animation-duration: 0.7s;
-  position: absolute;
-  font-size: 44px;
-  z-index: 1;
-  color: #e9e9e9;
-  font-weight: 220;
-  margin-top: 100px;
-  margin-left: 280px;
-}
-.board h3::after{
+.board .image .imageTitle::after{
   content: ""; width:450px; height: 3px; background: #e9e9e9;
   position: absolute; bottom: -15px; left:-10px;
 }
 
-.board h5 {animation-name: slid-up; animation-duration: 1.2s;
-    line-height: 28px;
-    text-align: left;
+.board .image .imageText {animation-name: slid-up; animation-duration: 1.2s;
+    line-height: 28px; 
+    text-align: left; bottom:50px;
   position: absolute;
-  margin-top: 330px;
-  margin-left: 280px;
+  
   color: #eeeeeeea;
   font-size: 22px;
   font-weight: 140;
@@ -138,11 +76,11 @@ thead tr .head-6{width:6%;}
 thead tr .head-7{width:6%;}
 .board .text {
   position: absolute;
-  width: 75%;
+  width: 71%;
   /*height: 687px;*/
   left: 0;
   right: 0;
-  margin: 500px auto 0px auto;
+  margin: 0px auto 0px auto;
 }
 .Boardrow td{
   font-size: 17px;

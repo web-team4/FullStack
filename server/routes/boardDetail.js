@@ -32,7 +32,7 @@ router.post("/", function(req, res) {
         res.send("게시글을 찾을 수 없습니다.")
       } else {
         var sql =
-          'SELECT user_name, comment_content, DATE_FORMAT(comment_date,"%m/%d %H:%i") as comment_date FROM comment WHERE board_id=?'
+          'SELECT user_name, comment_content, DATE_FORMAT(comment_date,"%m/%d %H:%i") as comment_date, comment_id FROM comment WHERE board_id=?'
         conn.query(sql, [parseInt(req.body.board_id)], function(err, c_rs) {
           if (err) {
             console.log(err)

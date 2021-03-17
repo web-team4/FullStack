@@ -5,9 +5,13 @@ Axios.defaults.withCredentials = true
 
 class Comments extends React.Component {
   //props: comment(작성자 id, 내용, 날짜 객체)
-
+  update = (e) => {}
+  delete = (e) => {
+    if (window.confirm("댓글을 삭제 하시겠습니까?")) {
+    }
+  }
   render() {
-    let { user_name, comment_content, comment_date } = this.props.comment
+    let { user_name, comment_content, comment_date, comment_id } = this.props.comment
     return (
       <div className="comment">
         <div className="title">
@@ -19,13 +23,17 @@ class Comments extends React.Component {
           </span>
           {this.props.loginName === user_name && (
             <span className="control">
-              <button className="update">수정</button>
-              <button className="delete">X</button>
+              <button className="update" onClick={(e) => this.update(e)}>
+                수정
+              </button>
+              <button className="delete" onClick={(e) => this.delete(e)}>
+                X
+              </button>
             </span>
           )}
         </div>
 
-        <hr />
+        <span className="comment_line" />
         <div className="content">{comment_content}</div>
       </div>
     )

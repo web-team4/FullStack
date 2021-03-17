@@ -24,20 +24,26 @@ html,body,#root{height: 100%; box-sizing: border-box;}
 
 
 .App {
-  height: 100%; width:100%; padding-top: 55px;
+  height: 100%; width:100%;
   text-align: center;
   font-family : Typo_SSiGothic150;
 }
 .page{
   padding:0px 3%; 
-  position:relative; height: 90.5%;
+  position:relative; height: 100%; padding-top: 130px;
   align-items: center; text-align: center;
+  -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
  
+}
+.page::-webkit-scrollbar{
+  display: none;
 }
 
 @media(max-height:800px){
 
   html,body,#root,.page{overflow:unset;}
 }
-.navigation{width:100%; align-items: center; }
+.navigation{width:94%; align-items: center;background: white; position: fixed; z-index: 1;
+margin:0 3%;  padding-top: 40px;}
 
