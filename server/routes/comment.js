@@ -21,6 +21,7 @@ router.post("/:board_id", function(req, res) {
     const user_id = req.session.user_id
     const user_name = req.session.user_name
     const comment_content = req.body.comment_content
+
     const sql =
       "INSERT INTO comment(user_id,user_name,board_id,comment_content,comment_date) VALUES(?,?,?,?,now())"
     conn.query(sql, [user_id, user_name, board_id, comment_content], function(err, result) {
@@ -30,16 +31,13 @@ router.post("/:board_id", function(req, res) {
             if(confirm("댓글이 안써집니다 ㅠ")){window.location.href=document.referrer}
             </script>`) // document.referrer은 이전주소!
       } else {
-        var link = "/detail/" + board_id
-        res.redirect(link)
+        conn.query("update board set board_cnum = board_cnum+1 where board_id = ?", [board_id])
+        res.send({ login: true })
       }
     })
   } else {
     //session이 없을때.
-    res.send(`<script>
-      if(confirm("로그인 후 이용해주세요.")){
-        window.location.href=document.referrer}
-      </script>`)
+    res.send({ login: false })
   }
 })
 

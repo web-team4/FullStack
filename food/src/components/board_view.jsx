@@ -2,6 +2,7 @@ import React from "react"
 import "../css/board_view.css"
 import board1 from "../images/coffee2.png"
 import { withRouter, Link } from "react-router-dom"
+import Comments from "./comments.jsx"
 import Axios from "axios"
 Axios.defaults.withCredentials = true
 
@@ -16,6 +17,7 @@ class Board_view extends React.Component {
     content: "",
     flag: false,
     comment: [],
+    nickName: "",
   }
   componentDidMount() {
     Axios.post("/detail", { board_id: this.state.id }).then((res) => {
@@ -23,6 +25,27 @@ class Board_view extends React.Component {
       for (let [name, value] of Object.entries(res.data)) temp[name] = value
       this.setState(temp)
     })
+    Axios.post("/").then((res) => {
+      console.log(res.data.id)
+      this.setState({ nickName: res.data.nickName })
+    })
+  }
+  handleSubmit = (e) => {
+    e.preventDefault()
+    if (e.target[0].value !== "") {
+      let temp = { comment_content: e.target[0].value }
+      console.log(temp)
+      Axios.post(`/comment/${this.state.id}`, temp)
+        .then((res) => {
+          if (res.data.login) {
+            alert("댓글이 작성되었습니다!")
+            //this.setState({ ...this.state })
+          } else alert("로그인 후 이용해 주세요")
+        })
+        .catch((err) => console.log(err))
+    } else {
+      alert("내용을 입력해 주세요")
+    }
   }
   render() {
     if (this.props.location.state === undefined) this.props.history.push("/board/page1")
@@ -50,6 +73,12 @@ class Board_view extends React.Component {
             <li className="control">{this.state.like}</li>
             <li>댓글수</li>
             <li className="control">{this.state.comment.length}</li>
+            {this.state.writer === this.state.nickName ? (
+              <li>
+                <button>수정</button>
+                <button>X</button>
+              </li>
+            ) : null}
           </ul>
         </div>
         <div
@@ -64,6 +93,19 @@ class Board_view extends React.Component {
           </Link>
 
           <button className="next">다음</button>
+          <div></div>
+        </div>
+        <div className="comments">
+          <h2>댓글</h2>
+          {this.state.comment.map((c, idx) => (
+            <Comments key={idx} comment={c} loginName={this.state.nickName}></Comments>
+          ))}
+        </div>
+        <div className="writeComment">
+          <form className="write" onSubmit={(e) => this.handleSubmit(e)}>
+            <textarea name="text" id="" cols="50" rows="6" wrap="hard"></textarea>
+            <button type="submit">등록</button>
+          </form>
         </div>
       </div>
     ) : null
