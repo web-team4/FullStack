@@ -9,6 +9,7 @@ const conn = mysql.createConnection({
   port: "3306",
   password: "12345678",
   database: "table_connect",
+  multipleStatements: true,
 })
 conn.connect()
 
@@ -32,8 +33,8 @@ router.post("/", function(req, res) {
         res.send("게시글을 찾을 수 없습니다.")
       } else {
         var sql =
-          'SELECT user_name, comment_content, DATE_FORMAT(comment_date,"%m/%d %H:%i") as comment_date, comment_id FROM comment WHERE board_id=?'
-        conn.query(sql, [parseInt(req.body.board_id)], function(err, c_rs) {
+          'SELECT user_name, comment_content, DATE_FORMAT(comment_date,"%m/%d %H:%i") as comment_date, comment_id FROM comment WHERE board_id=?; select count(*) as cnt from board where board_id >?;'
+        conn.query(sql, [parseInt(req.body.board_id), req.body.board_id], function(err, c_rs) {
           if (err) {
             console.log(err)
             res.send("댓글을 찾을 수 없습니다.")
@@ -48,7 +49,8 @@ router.post("/", function(req, res) {
                 view: b_rs[0].board_view,
                 flag: true,
                 like: b_rs[0].board_like,
-                comment: c_rs,
+                comment: c_rs[0],
+                prevLink: Math.floor(c_rs[1][0].cnt / 5) + 1,
               })
             } else {
               res.send({
@@ -59,7 +61,8 @@ router.post("/", function(req, res) {
                 view: b_rs[0].board_view,
                 like: b_rs[0].board_like,
                 flag: false,
-                comment: c_rs,
+                comment: c_rs[0],
+                prevLink: Math.floor(c_rs[1][0].cnt / 5) + 1,
               })
             }
           }

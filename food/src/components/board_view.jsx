@@ -17,6 +17,7 @@ class Board_view extends React.Component {
     flag: false,
     comment: [],
     nickName: "",
+    prevLink: 1,
   }
   componentDidMount() {
     Axios.post("/detail", { board_id: this.state.id }).then((res) => {
@@ -52,7 +53,7 @@ class Board_view extends React.Component {
       Axios.post(`/delete/${this.state.id}`).then((res) => {
         if (res.data.success) {
           alert("게시글이 삭제 되었습니다")
-          this.props.history.push(`/board/page${this.props.location.state.prevPage}`)
+          this.props.history.push(`/board/page${this.state.prevLink}`)
         } else {
           alert("게시글 삭제 실패")
         }
@@ -60,8 +61,7 @@ class Board_view extends React.Component {
     }
   }
   render() {
-    if (this.props.location.state === undefined) this.props.history.push("/board/page1")
-    return this.props.location.state ? (
+    return (
       <div className="board_view">
         <div className="text">
           <h3 className="imageTitle">자유 게시판</h3>
@@ -104,7 +104,7 @@ class Board_view extends React.Component {
           }}
         ></div>
         <div className="btns">
-          <Link to={{ pathname: `/board/page${this.props.location.state.prevPage}` }}>
+          <Link to={{ pathname: `/board/page${this.state.prevLink}` }}>
             <button className="prev">이전</button>
           </Link>
 
@@ -126,7 +126,7 @@ class Board_view extends React.Component {
           </div>
         </div>
       </div>
-    ) : null
+    )
   }
 }
 
