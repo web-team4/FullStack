@@ -1,6 +1,5 @@
 import React from "react"
 import "../css/board_view.css"
-import board1 from "../images/coffee2.png"
 import { withRouter, Link } from "react-router-dom"
 import Comments from "./comments.jsx"
 import Axios from "axios"
@@ -26,7 +25,6 @@ class Board_view extends React.Component {
       this.setState(temp)
     })
     Axios.post("/").then((res) => {
-      console.log(res.data.id)
       this.setState({ nickName: res.data.nickName })
     })
   }
@@ -40,11 +38,25 @@ class Board_view extends React.Component {
           if (res.data.login) {
             alert("댓글이 작성되었습니다!")
             //this.setState({ ...this.state })
+            window.location.reload()
           } else alert("로그인 후 이용해 주세요")
         })
         .catch((err) => console.log(err))
     } else {
       alert("내용을 입력해 주세요")
+    }
+  }
+  update = (e) => {}
+  delete = (e) => {
+    if (window.confirm("게시글을 삭제 하시겠습니까?")) {
+      Axios.post(`/delete/${this.state.id}`).then((res) => {
+        if (res.data.success) {
+          alert("게시글이 삭제 되었습니다")
+          this.props.history.push(`/board/page${this.props.location.state.prevPage}`)
+        } else {
+          alert("게시글 삭제 실패")
+        }
+      })
     }
   }
   render() {
@@ -75,8 +87,12 @@ class Board_view extends React.Component {
             <li className="control">{this.state.comment.length}</li>
             {this.state.writer === this.state.nickName && (
               <li className="control_btns">
-                <button className="update">수정</button>
-                <button className="delete">X</button>
+                <button className="update" onClick={(e) => this.update(e)}>
+                  수정
+                </button>
+                <button className="delete" onClick={(e) => this.delete(e)}>
+                  X
+                </button>
               </li>
             )}
           </ul>

@@ -13,11 +13,27 @@ const conn = mysql.createConnection({
 })
 conn.connect()
 
+router.post("/delete", (req, res) => {
+  console.log(req.body.comment_id)
+  let id = req.body.comment_id
+  conn.query(
+    "update board set board_cnum = board_cnum-1 where board_id = (select board_id from comment where comment_id = ?)",
+    [id]
+  )
+  conn.query("DELETE FROM comment WHERE comment_id=?", [id], (err, rs) => {
+    if (err) {
+      res.send({ success: false })
+    } else {
+      res.send({ success: true })
+    }
+  })
+})
+
 router.post("/:board_id", function(req, res) {
   if (req.session.user_id) {
     //session은 app.js가 알아서 해주지 않을까..
     const board_id = req.params.board_id
-    console.log(board_id)
+
     const user_id = req.session.user_id
     const user_name = req.session.user_name
     const comment_content = req.body.comment_content

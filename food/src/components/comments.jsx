@@ -8,10 +8,19 @@ class Comments extends React.Component {
   update = (e) => {}
   delete = (e) => {
     if (window.confirm("댓글을 삭제 하시겠습니까?")) {
+      let { comment_id } = this.props.comment
+      Axios.post("/comment/delete", { comment_id }).then((res) => {
+        if (res.data.success) {
+          alert("댓글이 삭제 되었습니다")
+          window.location.reload()
+        } else {
+          alert("댓글 삭제 실패")
+        }
+      })
     }
   }
   render() {
-    let { user_name, comment_content, comment_date, comment_id } = this.props.comment
+    let { user_name, comment_content, comment_date } = this.props.comment
     return (
       <div className="comment">
         <div className="title">

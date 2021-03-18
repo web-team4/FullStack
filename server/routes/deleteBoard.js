@@ -13,21 +13,17 @@ const conn = mysql.createConnection({
 conn.connect()
 
 // 삭제폼(비밀번호 확인을 위한)
-router.get("/:board_id", function(req, res) {
+router.post("/:board_id", function(req, res) {
   const board_id = parseInt(req.params.board_id)
   console.log("/deleteBoard 삭제 요청", board_id)
-  var sql = "DELETE FROM board WHERE board_id=?;"
-  conn.query(sql, [board_id], function(err, rs) {
+
+  conn.query("delete from comment where board_id = ?", [board_id])
+  conn.query("DELETE FROM board WHERE board_id=?;", [board_id], function(err, rs) {
     if (err) {
       console.log(err)
-      res.send(
-        `<script>
-              if(confirm("삭제하는데에 오류가 발생했습니다.")){
-                window.location.href='/detail/'+${board_id}}
-              </script>`
-      )
+      res.send({ success: false })
     } else {
-      res.redirect("/list")
+      res.send({ success: true })
     }
   })
 })
