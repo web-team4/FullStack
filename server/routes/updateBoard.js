@@ -12,27 +12,6 @@ const conn = mysql.createConnection({
 })
 conn.connect()
 // 수정폼
-router.get("/:board_id", function(req, res, err) {
-  if (err) {
-    console.log(req.params.board_id)
-  }
-  console.log("/updateBoard 수정폼 요청")
-  const board_id = parseInt(req.params.board_id)
-  console.log(board_id)
-  var sql = "SELECT board_title,board_content,board_id FROM board WHERE board_id=?"
-  conn.query(sql, [board_id], function(err, rs) {
-    if (err) {
-      console.log(err)
-      res.send("수정할 수 없습니다1")
-    } else {
-      res.render("updateBoard", {
-        board_content: rs[0].board_content,
-        board_title: rs[0].board_title,
-        board_id: rs[0].board_id,
-      })
-    }
-  })
-})
 
 // 수정액션
 router.post("/", function(req, res) {
@@ -45,11 +24,9 @@ router.post("/", function(req, res) {
   conn.query(sql, [board_title, board_content, board_id], function(err, rs) {
     if (err) {
       console.log(err)
-      res.end("수정할 수 없습니다2")
+      res.send({ update: false })
     } else {
-      req.session.save(function() {
-        res.redirect(`/detail/${board_id}`)
-      })
+      res.send({ update: true })
     }
   })
 })

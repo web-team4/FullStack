@@ -33,7 +33,7 @@ class Board_view extends React.Component {
     e.preventDefault()
     if (e.target[0].value !== "") {
       let temp = { comment_content: e.target[0].value }
-      console.log(temp)
+
       Axios.post(`/comment/${this.state.id}`, temp)
         .then((res) => {
           if (res.data.login) {
@@ -47,12 +47,26 @@ class Board_view extends React.Component {
       alert("내용을 입력해 주세요")
     }
   }
-  update = (e) => {}
+  update = (e) => {
+    if (window.confirm("게시글을 수정 하시겠습니까?")) {
+      this.props.history.push({
+        pathname: "/write",
+        state: {
+          title: this.state.title,
+          content: this.state.content,
+          update: true,
+          id: this.state.id,
+          prevUrl: this.state.prevLink,
+        },
+      })
+    }
+  }
   delete = (e) => {
     if (window.confirm("게시글을 삭제 하시겠습니까?")) {
       Axios.post(`/delete/${this.state.id}`).then((res) => {
         if (res.data.success) {
           alert("게시글이 삭제 되었습니다")
+
           this.props.history.push(`/board/page${this.state.prevLink}`)
         } else {
           alert("게시글 삭제 실패")

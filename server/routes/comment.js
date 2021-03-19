@@ -13,6 +13,18 @@ const conn = mysql.createConnection({
 })
 conn.connect()
 
+router.post("/update/:comment_id", (req, res) => {
+  conn.query(
+    "update comment set comment_content = ? where comment_id = ?",
+    [req.body.data, req.params.comment_id],
+    (err, rs) => {
+      if (err) {
+        console.log(err)
+        res.send({ update: false })
+      } else res.send({ update: true })
+    }
+  )
+})
 router.post("/delete", (req, res) => {
   console.log(req.body.comment_id)
   let id = req.body.comment_id
