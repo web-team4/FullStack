@@ -69,6 +69,7 @@ var updateBoardRouter = require("./routes/updateBoard")
 var commentRouter = require("./routes/comment")
 var authRouter = require("./routes/auth")
 var testRouter = require("./routes/test")
+var testResultRouter = require("./routes/testResult")
 
 app.use("/add", addBoardRouter)
 app.use("/detail", boardDetailRouter)
@@ -78,6 +79,7 @@ app.use("/update", updateBoardRouter)
 app.use("/comment", commentRouter)
 app.use("/auth", authRouter)
 app.use("/test", testRouter)
+app.use("/test_result", testResultRouter)
 
 //home
 app.post("/", function(req, res) {
