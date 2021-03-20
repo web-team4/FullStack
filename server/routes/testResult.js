@@ -17,17 +17,28 @@ router.get("/", function(req, res) {
 })
 
 router.post("/", function(req, res) {
-    var sql = 'SELECT user_mbti FROM user WHERE user_id = ?';
-    var user_id = req.session.user_id
-    conn.query(sql,[user_id],function(err, rs){
-        user_mbti=rs[0].user_mbti;
+    if(req.session.user_id) { // 로그인 했을 때
+        var user_id = req.session.user_id;
+        conn.query(sql, [user_id], function (err, rs) {
+            var user_mbti = rs[0].user_mbti;
+            var sql = 'SELECT * FROM result WHERE mbti = ?';
+            conn.query(sql, [user_mbti], function (err, rs) {
+                var _menu = rs[0].menu;
+                var _desc = rs[0].desc;
+                var _map = rs[0].map;
+                res.send({menu: _menu, desc: _desc, map: _map, id: user_id});
+            })
+        })
+    }
+    else { // 로그인 안했을 떄
+        var user_mbti = req.session.user_mbti;
         var sql = 'SELECT * FROM result WHERE mbti = ?';
-        conn.query(sql,[user_mbti],function(err, rs){
+        conn.query(sql, [user_mbti], function (err, rs) {
             var _menu = rs[0].menu;
             var _desc = rs[0].desc;
             var _map = rs[0].map;
-            res.send({menu :_menu , desc:_desc, map:_map, id:user_id});
+            res.send({menu: _menu, desc: _desc, map: _map, id: user_id});
         })
-    })
+    }
 })
 module.exports = router
