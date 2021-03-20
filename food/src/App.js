@@ -10,6 +10,7 @@ import Profile from "./components/profile"
 import Write from "./components/write"
 import Board from "./components/board"
 import Test from "./components/test"
+import Test_result from "./components/test_result"
 import Board_view from "./components/board_view"
 import Axios from "axios"
 Axios.defaults.withCredentials = true
@@ -64,6 +65,7 @@ class App extends React.Component {
                 <Write possible={this.state.loginCheck} change={this.changeState} {...props} />}
             />
             <Route path="/test" exact component={Test} />
+            <Route path="/test_result" exact component={Test_result} />
             <Route path="/board/:page/:id" exact component={Board_view} />
           </div>
         </div>
